@@ -7,8 +7,8 @@ import org.junit.jupiter.api.Test;
 
 public class CarsTest {
     @Test
-    void 자동차_3대가_생성된다() {
+    void 자동차_3대가_생성되면_위치값은_0이므로_최대값도_0이다() {
         Cars cars = new Cars(Arrays.asList("pobi", "woni", "junsu"));
-        assertThat(cars.getCars().size()).isEqualTo(3);
+        assertThat(cars.calculateMaxPosition()).isEqualTo(0);
     }
 }
