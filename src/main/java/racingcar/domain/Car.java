@@ -15,6 +15,14 @@ public class Car {
         }
     }
 
+    public boolean isSamePosition(Car car) {
+        return this.position == car.position;
+    }
+
+    public boolean isBiggerThan(Car car) {
+        return this.position > car.position;
+    }
+
     public int getPosition() {
         return position;
     }

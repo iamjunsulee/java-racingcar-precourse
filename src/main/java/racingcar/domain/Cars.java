@@ -1,22 +1,21 @@
 package racingcar.domain;
 
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 
 public class Cars {
     private final List<Car> cars;
 
     public Cars(List<String> names) {
-        cars = new ArrayList<>();
-        mappingToCar(names);
+        this.cars = mappingToCar(names);
     }
 
-    private void mappingToCar(List<String> names) {
+    private static List<Car> mappingToCar(List<String> names) {
+        List<Car> cars = new ArrayList<>();
         for (String name : names) {
             cars.add(new Car(name));
         }
+        return cars;
     }
 
     public void move(MovingStrategy strategy) {
@@ -25,25 +24,30 @@ public class Cars {
         }
     }
 
-    public int calculateMaxPosition() {
-        return Collections.max(cars, Comparator.comparingInt(Car::getPosition)).getPosition();
+    public List<Car> getWinners() {
+        Car winner = findMaxPositionCar();
+        return findSamePositionCars(winner);
     }
 
-    public List<Car> getWinners() {
+    private Car findMaxPositionCar() {
+        Car winner = cars.get(0);
+        for (Car car : cars) {
+            winner = car.isBiggerThan(winner) ? car : winner;
+        }
+        return winner;
+    }
+
+    private List<Car> findSamePositionCars(Car winner) {
         List<Car> winners = new ArrayList<>();
         for (Car car : cars) {
-            findWinners(winners, car);
+            addWinners(winner, winners, car);
         }
         return winners;
     }
 
-    private void findWinners(List<Car> winners, Car car) {
-        if (isWinner(car)) {
+    private void addWinners(Car winner, List<Car> winners, Car car) {
+        if (car.isSamePosition(winner)) {
             winners.add(car);
         }
-    }
-
-    private boolean isWinner(Car car) {
-        return car.getPosition() == calculateMaxPosition();
     }
 }
