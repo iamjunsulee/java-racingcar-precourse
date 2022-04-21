@@ -3,6 +3,8 @@ package racingcar.domain;
 import java.util.ArrayList;
 import java.util.List;
 
+import racingcar.common.PrintMessage;
+
 public class Cars {
     private final List<Car> cars;
 
@@ -24,7 +26,7 @@ public class Cars {
         }
     }
 
-    public List<Car> getWinners() {
+    public List<Car> findWinnerCars() {
         Car winner = findMaxPositionCar();
         return findSamePositionCars(winner);
     }
@@ -49,5 +51,12 @@ public class Cars {
         if (car.isSamePosition(winner)) {
             winners.add(car);
         }
+    }
+
+    public void printCarsPosition() {
+        for (Car car : cars) {
+            PrintMessage.print(car.createCarPositionMessage());
+        }
+        PrintMessage.printLine();
     }
 }
