@@ -10,14 +10,14 @@ public class CarTest {
     void 자동차_숫자_3이하_정지() {
         Car car = new Car("junsu");
         car.move(() -> false);
-        assertThat(car.getPosition()).isEqualTo(0);
+        assertThat(car.isStop()).isTrue();
     }
 
     @Test
     void 자동차_숫자_4이상_전진() {
         Car car = new Car("junsu");
         car.move(() -> true);
-        assertThat(car.getPosition()).isEqualTo(1);
+        assertThat(car.isStop()).isFalse();
     }
 
     @Test

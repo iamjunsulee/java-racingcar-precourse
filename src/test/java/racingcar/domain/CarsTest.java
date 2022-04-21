@@ -10,6 +10,6 @@ public class CarsTest {
     void 자동차_3대가_똑같이_움직이면_공동_우승이다() {
         Cars cars = new Cars(Arrays.asList("pobi", "woni", "junsu"));
         cars.move(() -> true);
-        assertThat(cars.getWinners().size()).isEqualTo(3);
+        assertThat(cars.findWinnerCars().size()).isEqualTo(3);
     }
 }

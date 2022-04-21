@@ -1,6 +1,9 @@
 package racingcar.domain;
 
 public class Car {
+    public static final String CAR_POSITION_MESSAGE = "-";
+    public static final String NAME_DELIMITER = " : ";
+
     private final CarName name;
     private int position;
 
@@ -23,11 +26,21 @@ public class Car {
         return this.position > car.position;
     }
 
-    public int getPosition() {
-        return position;
+    public boolean isStop() {
+        return this.position == 0;
     }
 
-    public String getName() {
-        return name.getName();
+    public String createCarPositionMessage() {
+        StringBuilder message = new StringBuilder();
+        message.append(name.toString()).append(NAME_DELIMITER);
+        for (int index = 0; index < position; index++) {
+            message.append(CAR_POSITION_MESSAGE);
+        }
+        return message.toString();
+    }
+
+    @Override
+    public String toString() {
+        return name.toString();
     }
 }

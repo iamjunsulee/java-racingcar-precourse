@@ -11,6 +11,6 @@ public class RacingResultTest {
         Cars cars = new Cars(Arrays.asList("pobi", "woni"));
         cars.move(() -> true);
         RacingResult result = new RacingResult(cars);
-        assertThat(result.getWinnersName()).isEqualTo("최종 우승자: pobi, woni");
+        assertThat(result.createWinnerMessage()).isEqualTo("최종 우승자는 pobi, woni 입니다.");
     }
 }
