@@ -4,8 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class RacingResult {
-    public static final String WINNER_MESSAGE_PREFIX = "최종 우승자는 ";
-    public static final String WINNER_MESSAGE_POSTFIX = " 입니다.";
+    public static final String WINNER_MESSAGE_PREFIX = "최종 우승자 : ";
     public static final String WINNER_MESSAGE_DELIMITER = ", ";
 
     private final Cars cars;
@@ -17,7 +16,7 @@ public class RacingResult {
     public String createWinnerMessage() {
         List<Car> winners = cars.findWinnerCars();
         List<String> winnerNames = mappingToString(winners);
-        return WINNER_MESSAGE_PREFIX + String.join(WINNER_MESSAGE_DELIMITER, winnerNames) + WINNER_MESSAGE_POSTFIX;
+        return WINNER_MESSAGE_PREFIX + String.join(WINNER_MESSAGE_DELIMITER, winnerNames);
     }
 
     private List<String> mappingToString(List<Car> winners) {
